@@ -1,0 +1,11 @@
+.element__heart-checkbox + .element__heart-span {
+  position: absolute;
+  top: 0;
+  left: -5px;
+  width: 100%;
+  height: 100%;
+  background: url(../../../images/heart-white.jpg);
+}
+.element__heart-checkbox:checked + .element__heart-span {
+  background: url(../../../images/heart-black.svg);
+}
