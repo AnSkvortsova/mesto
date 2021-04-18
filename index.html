@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pages/pages.css">
+    <title>Место</title>
+  </head>
+  <body>
+    <div class="page">
+      <header class="header header__box page__section">
+        <a class="logo" href="#"><img src="./images/logo.svg" alt="логотип"></a>
+      </header>
+
+      <main class="main">
+        <section class="profile profile__box page__section">
+          <img class="profile__image" src="./images/Avatar.jpg" alt="Аватар">
+          <div class="profile__info">
+            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <button class="profile__edit-button" type="button">
+              <img src="./images/edit-button.svg" alt="кнопка">
+            </button>
+            <p class="profile__subtitle">Исследователь океана</p>
+          </div>
+          <button class="profile__add-button" type="button">
+            <img class="profile__add-button-image" src="./images/add-button.svg" alt="кнопка">
+          </button>
+        </section>
+
+        <section class="elements page__section">
+          <div class="element">
+            <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
+            <div class="element__bottom">
+              <p class="element__text">Карачаевск</p>
+              <label class="element__heart"><input type="checkbox" class="element__heart-checkbox"><span class="element__heart-span"></span></label>
+            </div>
+          </div>
+          <div class="element">
+            <img class="element__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
+            <div class="element__bottom">
+              <p class="element__text">Гора Эльбрус</p>
+              <label class="element__heart"><input type="checkbox" class="element__heart-checkbox"><span class="element__heart-span"></span></label>
+            </div>
+          </div>
+          <div class="element">
+            <img class="element__image" src="./images/dombai.jpg" alt="Домбай">
+            <div class="element__bottom">
+              <p class="element__text">Домбай</p>
+              <label class="element__heart"><input type="checkbox" class="element__heart-checkbox"><span class="element__heart-span"></span></label>
+            </div>
+          </div>
+          <div class="element">
+            <img class="element__image" src="./images/krasnaya-polyana.jpeg" alt="Красная поляна">
+            <div class="element__bottom">
+              <p class="element__text">Красная поляна</p>
+              <label class="element__heart"><input type="checkbox" class="element__heart-checkbox"><span class="element__heart-span"></span></label>
+            </div>
+          </div>
+          <div class="element">
+            <img class="element__image" src="./images/krim.jpeg" alt="Крым">
+            <div class="element__bottom">
+              <p class="element__text">Крым</p>
+              <label class="element__heart"><input type="checkbox" class="element__heart-checkbox"><span class="element__heart-span"></span></label>
+            </div>
+          </div>
+          <div class="element">
+            <img class="element__image" src="./images/adigeya.jpeg" alt="Адыгея">
+            <div class="element__bottom">
+              <p class="element__text">Адыгея</p>
+              <label class="element__heart"><input type="checkbox" class="element__heart-checkbox"><span class="element__heart-span"></span></label>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer page__section">
+        <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
+      </footer>
+    </div>
+
+    <div class="popup">
+      <form class="popup__container">
+        <button class="popup__close" type="button">
+          <img class="popup__close-img" src="./images/popup-close.svg" alt="кнопка">
+        </button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <input class="popup__input" id="input-name" type="text" value="Жак-Ив Кусто">
+        <input class="popup__input" id="input-job" type="text" value="Исследователь океана">
+        <button class="popup__submit" type="submit">Сохранить</button>
+      </form>
+    </div>
+
+    <script src="./scripts/index.js"></script>
+  </body>
+</html>
