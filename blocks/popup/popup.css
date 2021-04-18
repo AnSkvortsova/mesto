@@ -1,6 +1,5 @@
 .popup {
   font-family: 'Inter', Arial, sans-serif;
-  display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
