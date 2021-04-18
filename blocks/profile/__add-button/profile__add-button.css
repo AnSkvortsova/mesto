@@ -4,6 +4,7 @@
   background: none;
   border: 1px solid #FFFFFF;
   border-radius: 2px;
+  outline: none;
   padding: 0;
 }
 .profile__add-button:hover {

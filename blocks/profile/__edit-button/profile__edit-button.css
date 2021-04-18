@@ -6,6 +6,7 @@
   padding: 0;
   background: none;
   border-style: none;
+  outline: none;
 }
 .profile__edit-button:hover {
   cursor: pointer;
