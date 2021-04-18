@@ -1,4 +1,4 @@
-.header__box {
+.header {
   border-bottom: 1px solid rgb(84, 84, 84);
   border-bottom: 1px solid rgba(84, 84, 84 .7);
   padding-top: 45px;
@@ -6,7 +6,7 @@
 }
 
 @media (max-width: 320px) {
-  .header__box {
+  .header {
     width: 100%;
     padding-top: 28px;
     padding-bottom: 31.6px;
