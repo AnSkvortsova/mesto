@@ -1,8 +1,12 @@
 .element__heart {
   width: 22px;
   height: 19px;
-  display: block;
-  position: relative;
+  background: none;
+  background-image: url(../../../images/heart.png);
+  border-style: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
 }
 .element__heart:hover {
   cursor: pointer;
