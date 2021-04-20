@@ -1,7 +1,7 @@
 .popup__close {
   width: 56.5px;
   height: 56.5px;
-  background: none;
+  background: url(../../../images/popup-close.png);
   border: none;
   outline: none;
   position: absolute;
@@ -20,5 +20,6 @@
     width: 36.7px;
     height: 36.7px;
     right: 5px;
+    background-size: 36.7px 36.7px;
   }
 }

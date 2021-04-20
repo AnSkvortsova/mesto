@@ -3,7 +3,7 @@
   height: 24px;
   margin: 0;
   padding: 0;
-  background: none;
+  background: url(../../../images/edit-button.png);
   border-style: none;
   outline: none;
 }
@@ -17,5 +17,6 @@
   .profile__edit-button {
     width: 18px;
     height: 18px;
+    background-size: 18px 18px;
   }
 }

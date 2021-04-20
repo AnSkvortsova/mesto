@@ -9,7 +9,7 @@
   <body>
     <div class="page">
       <header class="header page__section">
-        <a class="logo" href="#" target="_blank"><img src="./images/logo.svg" alt="логотип"></a>
+        <a class="logo" href="#" target="_blank"><img class="logo__image" src="./images/logo.svg" alt="логотип"></a>
       </header>
 
       <main class="main">
@@ -19,61 +19,57 @@
           <div class="profile__info">
             <div class="profile__row">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
-              <button class="profile__edit-button" type="button">
-                <img class="profile__edit-button-image" src="./images/edit-button.svg" alt="кнопка">
-              </button>
+              <button class="profile__edit-button" type="button" aria-label="редактировать"></button>
             </div>
             <p class="profile__subtitle">Исследователь океана</p>
           </div>
-          <button class="profile__add-button" type="button">
-            <img class="profile__add-button-image" src="./images/add-button.svg" alt="кнопка">
-          </button>
+          <button class="profile__add-button" type="button" aria-label="добавить"></button>
           </div>
         </section>
 
         <section class="elements page__section">
-          <div class="element">
+          <article class="element">
             <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
             <div class="element__bottom">
-              <p class="element__text">Карачаевск</p>
-              <button class="element__heart"></button>
+              <h2 class="element__text">Карачаевск</h2>
+              <button class="element__heart" type="button" aria-label="отметить как нравиться"></button>
             </div>
-          </div>
-          <div class="element">
+          </article>
+          <article class="element">
             <img class="element__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
             <div class="element__bottom">
-              <p class="element__text">Гора Эльбрус</p>
-              <button class="element__heart"></button>
+              <h2 class="element__text">Гора Эльбрус</h2>
+              <button class="element__heart" type="button" aria-label="отметить как нравиться"></button>
             </div>
-          </div>
-          <div class="element">
+          </article>
+          <article class="element">
             <img class="element__image" src="./images/dombai.jpg" alt="Домбай">
             <div class="element__bottom">
-              <p class="element__text">Домбай</p>
-              <button class="element__heart"></button>
+              <h2 class="element__text">Домбай</h2>
+              <button class="element__heart" type="button" aria-label="отметить как нравиться"></button>
             </div>
-          </div>
-          <div class="element">
+          </article>
+          <article class="element">
             <img class="element__image" src="./images/krasnaya-polyana.jpeg" alt="Красная поляна">
             <div class="element__bottom">
-              <p class="element__text">Красная поляна</p>
-              <button class="element__heart"></button>
+              <h2 class="element__text">Красная поляна</h2>
+              <button class="element__heart" type="button" aria-label="отметить как нравиться"></button>
             </div>
-          </div>
-          <div class="element">
+          </article>
+          <article class="element">
             <img class="element__image" src="./images/krim.jpeg" alt="Крым">
             <div class="element__bottom">
-              <p class="element__text">Крым</p>
-              <button class="element__heart"></button>
+              <h2 class="element__text">Крым</h2>
+              <button class="element__heart" type="button" aria-label="отметить как нравиться"></button>
             </div>
-          </div>
-          <div class="element">
+          </article>
+          <article class="element">
             <img class="element__image" src="./images/adigeya.jpeg" alt="Адыгея">
             <div class="element__bottom">
-              <p class="element__text">Адыгея</p>
-              <button class="element__heart"></button>
+              <h2 class="element__text">Адыгея</h2>
+              <button class="element__heart" type="button" aria-label="отметить как нравиться"></button>
             </div>
-          </div>
+          </article>
         </section>
       </main>
 
@@ -83,15 +79,15 @@
     </div>
 
     <div class="popup">
-      <form class="popup__container">
-        <button class="popup__close" type="button">
-          <img class="popup__close-img" src="./images/popup-close.svg" alt="кнопка">
-        </button>
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <input class="popup__input" id="input-name" type="text" value="Жак-Ив Кусто">
-        <input class="popup__input" id="input-job" type="text" value="Исследователь океана">
-        <button class="popup__submit" type="submit">Сохранить</button>
-      </form>
+      <div class="popup__container">
+        <form name="edit">
+          <button class="popup__close" type="button" aria-label="закрыть"></button>
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input class="popup__input" id="input-name" name="input-name" type="text" value="">
+          <input class="popup__input" id="input-job" name="input-job" type="text" value="">
+          <button class="popup__submit" type="submit" aria-label="сохранить">Сохранить</button>
+        </form>
+      </div>
     </div>
 
     <script src="./scripts/index.js"></script>
