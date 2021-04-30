@@ -30,6 +30,7 @@
         <section class="elements page__section">
           <article class="element">
             <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
+            <div class="element__trash"></div>
             <div class="element__bottom">
               <h2 class="element__text">Карачаевск</h2>
               <button class="element__heart" type="button" aria-label="отметить как нравиться"></button>
@@ -37,6 +38,7 @@
           </article>
           <article class="element">
             <img class="element__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
+            <div class="element__trash"></div>
             <div class="element__bottom">
               <h2 class="element__text">Гора Эльбрус</h2>
               <button class="element__heart" type="button" aria-label="отметить как нравиться"></button>
@@ -44,6 +46,7 @@
           </article>
           <article class="element">
             <img class="element__image" src="./images/dombai.jpg" alt="Домбай">
+            <div class="element__trash"></div>
             <div class="element__bottom">
               <h2 class="element__text">Домбай</h2>
               <button class="element__heart" type="button" aria-label="отметить как нравиться"></button>
@@ -51,6 +54,7 @@
           </article>
           <article class="element">
             <img class="element__image" src="./images/krasnaya-polyana.jpeg" alt="Красная поляна">
+            <div class="element__trash"></div>
             <div class="element__bottom">
               <h2 class="element__text">Красная поляна</h2>
               <button class="element__heart" type="button" aria-label="отметить как нравиться"></button>
@@ -58,6 +62,7 @@
           </article>
           <article class="element">
             <img class="element__image" src="./images/krim.jpeg" alt="Крым">
+            <div class="element__trash"></div>
             <div class="element__bottom">
               <h2 class="element__text">Крым</h2>
               <button class="element__heart" type="button" aria-label="отметить как нравиться"></button>
@@ -65,6 +70,7 @@
           </article>
           <article class="element">
             <img class="element__image" src="./images/adigeya.jpeg" alt="Адыгея">
+            <div class="element__trash"></div>
             <div class="element__bottom">
               <h2 class="element__text">Адыгея</h2>
               <button class="element__heart" type="button" aria-label="отметить как нравиться"></button>
@@ -79,15 +85,29 @@
     </div>
 
     <div class="popup">
-      <div class="popup__container">
-        <form class="popup__edit" name="edit">
-          <button class="popup__close" type="button" aria-label="закрыть"></button>
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <input class="popup__input" id="input-name" name="input-name" type="text" value="">
-          <input class="popup__input" id="input-job" name="input-job" type="text" value="">
-          <button class="popup__submit" type="submit" aria-label="сохранить">Сохранить</button>
-        </form>
+      <div class="popup__edit">
+        <div class="popup__container" id="popup__edit-container">
+          <form class="popup__form" name="edit">
+            <button class="popup__close" id="popup__edit-close" type="button" aria-label="закрыть"></button>
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <input class="popup__input" id="input-name" name="input-name" type="text" value="">
+            <input class="popup__input" id="input-job" name="input-job" type="text" value="">
+            <button class="popup__submit" type="submit" aria-label="сохранить">Сохранить</button>
+          </form>
+        </div>
       </div>
+     
+      <div class="popup__add">
+        <div class="popup__container" id="popup__add-container">
+          <form class="popup__form" name="add-card">
+            <button class="popup__close" id="popup__add-close" type="button" aria-label="закрыть"></button>
+            <h2 class="popup__title">Новое место</h2>
+            <input class="popup__input" id="input-name" name="input-name" type="text" value="" placeholder="Название">
+            <input class="popup__input" id="input-job" name="input-job" type="text" value="" placeholder="Ссылка на картинку">
+            <button class="popup__submit" type="submit" aria-label="сохранить">Сохранить</button>
+          </form>
+        </div>
+      </diс>
     </div>
 
     <script src="./scripts/index.js"></script>
