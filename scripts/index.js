@@ -28,9 +28,9 @@ const initialCards = [
 // переменные открытия и закрытия popup
 const handleOpenPopupEdit = document.querySelector('.profile__edit-button');
 const handleOpenPopupAdd = document.querySelector('.profile__add-button');
-const popupEdit = document.querySelector('.popup__edit');
-const popupAdd = document.querySelector('.popup__add');
-const popupImage = document.querySelector('.popup__image');
+const popupEdit = document.querySelector('.popup_type_edit');
+const popupAdd = document.querySelector('.popup_type_add');
+const popupImage = document.querySelector('.popup_type_image');
 const handleClosePopupEdit = document.querySelector('#popup__edit-close');
 const handleClosePopupAdd = document.querySelector('#popup__add-close');
 const handleClosePopupImage = document.querySelector('#popup__img-close');
@@ -149,11 +149,13 @@ handleOpenPopupEdit.addEventListener('click', () => {
   jobInput.value = subtitle.textContent;
   openPopup(popupEdit)
 });
+
 handleOpenPopupAdd.addEventListener('click', () => {
   inputPlace.value = '';
   inputLink.value = '';
   openPopup(popupAdd)
 });
+
 handleClosePopupEdit.addEventListener('click', () => closePopup(popupEdit));
 handleClosePopupAdd.addEventListener('click', () => closePopup(popupAdd));
 handleClosePopupImage.addEventListener('click',() =>  closePopup(popupImage));
