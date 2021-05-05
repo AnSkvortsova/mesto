@@ -39,7 +39,7 @@
 
     <template id="card-template">
       <article class="element">
-        <img class="element__image" src="'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'" alt="Картинка">
+        <img class="element__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="Картинка">
         <button class="element__trash" type="button" aria-label="удалить"></button>
         <div class="element__bottom">
           <h2 class="element__text"></h2>
@@ -48,41 +48,41 @@
       </article>
     </template>
 
-    <div class="popup">
-      <div class="popup__edit">
-        <div class="popup__container" id="popup__edit-container">
-          <form class="popup__form" name="edit">
-            <button class="popup__close" id="popup__edit-close" type="button" aria-label="закрыть"></button>
-            <h2 class="popup__title">Редактировать профиль</h2>
-            <input class="popup__input" id="input-name" name="input-name" type="text" value="">
-            <input class="popup__input" id="input-job" name="input-job" type="text" value="">
-            <button class="popup__submit" id="popup__submit-edit" type="submit" aria-label="сохранить">Сохранить</button>
-          </form>
-        </div>
+    
+    <div class="popup popup__edit">
+      <div class="popup__container" id="popup__edit-container">
+        <form class="popup__form" name="edit">
+          <button class="popup__close" id="popup__edit-close" type="button" aria-label="закрыть"></button>
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input class="popup__input" id="input-name" name="input-name" type="text" value="">
+          <input class="popup__input" id="input-job" name="input-job" type="text" value="">
+          <button class="popup__submit" id="popup__submit-edit" type="submit" aria-label="сохранить">Сохранить</button>
+        </form>
       </div>
+    </div>
+    
+    <div class="popup popup__add">
+      <div class="popup__container" id="popup__add-container">
+        <form class="popup__form" name="add-card">
+          <button class="popup__close" id="popup__add-close" type="button" aria-label="закрыть"></button>
+          <h2 class="popup__title">Новое место</h2>
+          <input class="popup__input" id="input-place" name="input-place" type="text" value="" placeholder="Название">
+          <input class="popup__input" id="input-link" name="input-link" type="text" value="" placeholder="Ссылка на картинку">
+          <button class="popup__submit" id="popup__submit-add" type="submit" aria-label="сохранить">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    
+    <div class="popup popup__image">
+      <div class="popup__img-container">
+        <button class="popup__close" id="popup__img-close" type="button" aria-label="закрыть"></button>
+        <figure class="popup__figure">
+          <img class="popup__image-big" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="Картинка">
+          <figcaption class="popup__text"></figcaption>
+        </figure>
+      </div>
+    </div>
      
-      <div class="popup__add">
-        <div class="popup__container" id="popup__add-container">
-          <form class="popup__form" name="add-card">
-            <button class="popup__close" id="popup__add-close" type="button" aria-label="закрыть"></button>
-            <h2 class="popup__title">Новое место</h2>
-            <input class="popup__input" id="input-place" name="input-place" type="text" value="" placeholder="Название">
-            <input class="popup__input" id="input-link" name="input-link" type="text" value="" placeholder="Ссылка на картинку">
-            <button class="popup__submit" id="popup__submit-add" type="submit" aria-label="сохранить">Сохранить</button>
-          </form>
-        </div>
-      </div>
-
-      <div class="popup__image">
-        <div class="popup__img-container">
-          <button class="popup__close" id="popup__img-close" type="button" aria-label="закрыть"></button>
-          <figure class="popup__figure">
-            <img class="popup__image-big" src="'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'" alt="Картинка">
-            <figcaption class="popup__text"></figcaption>
-          </figure>
-        </div>
-      </div>
-    </div>    
 
 
     <script src="./scripts/index.js"></script>
