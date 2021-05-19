@@ -7,6 +7,7 @@ const popupImage = document.querySelector('.popup_type_image');
 const handleClosePopupEdit = document.querySelector('#popup__edit-close');
 const handleClosePopupAdd = document.querySelector('#popup__add-close');
 const handleClosePopupImage = document.querySelector('#popup__img-close');
+const addButton = document.querySelector('#popup__submit-add');
 
 // переменные для работы с формой
 const handleFormEdit = document.querySelector('#popup__edit-container');
@@ -40,8 +41,9 @@ const popupList = Array.from(document.querySelectorAll('.popup'));
 // функция закрытия попап по нажатию Esc
 function heandleKey(evt) {
   popupList.forEach((popupElement) => {
-  if (evt.key === 'Escape') {
-    popupElement.classList.remove('popup_opend');
+    document.querySelector('.popup_opend');
+    if (evt.key === 'Escape') {
+      closePopup(popupElement);
   }
 })
 }
@@ -49,8 +51,9 @@ function heandleKey(evt) {
 // функция закрытия попап по клике на оверлей
 function heandleOverlay(evt) {
   popupList.forEach((popupElement) => {
+    document.querySelector('.popup_opend');
     if(evt.target.classList.contains('popup_opend')) {
-      popupElement.classList.remove('popup_opend');
+      closePopup(popupElement);
     }
   })
 }
@@ -116,8 +119,13 @@ initialCards.forEach((item) => {
   elementsContainer.append(newElement);
 });
 
+// функция отключения кнопки AddButton
+function setAddButtonDisabled(addButton) {
+  addButton.disabled = true;
+}
+
 // добавление карточки из popup
-function submitFormAdd(evt){
+function handleSubmitFormAdd(evt){
   evt.preventDefault();
   
   const valuePlace = inputPlace.value;
@@ -128,10 +136,11 @@ function submitFormAdd(evt){
   closePopup(popupAdd);
 
   evt.target.reset();
+  setAddButtonDisabled(addButton);
 }
 
 // добавление изменений попапа редактировать
-function submitFormEdit(evt){
+function handleSubmitFormEdit(evt){
   evt.preventDefault();
 
   title.textContent = nameInput.value;
@@ -145,11 +154,11 @@ function submitFormEdit(evt){
 handleOpenPopupEdit.addEventListener('click', () => {
   nameInput.value = title.textContent; 
   jobInput.value = subtitle.textContent;
-  openPopup(popupEdit)
+  openPopup(popupEdit);
 });
 
 handleOpenPopupAdd.addEventListener('click', () => {
-  openPopup(popupAdd)
+  openPopup(popupAdd);
 });
 
 handleClosePopupEdit.addEventListener('click', () => closePopup(popupEdit));
@@ -157,8 +166,8 @@ handleClosePopupAdd.addEventListener('click', () => closePopup(popupAdd));
 handleClosePopupImage.addEventListener('click',() =>  closePopup(popupImage));
 
 // вызов функции сохранить попап
-handleFormEdit.addEventListener('submit', submitFormEdit);
-handleFormAdd.addEventListener('submit', submitFormAdd);
+handleFormEdit.addEventListener('submit', handleSubmitFormEdit);
+handleFormAdd.addEventListener('submit', handleSubmitFormAdd);
 
 // валидация форм
 enableValidation({

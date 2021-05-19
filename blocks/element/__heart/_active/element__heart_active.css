@@ -1,8 +1,3 @@
 .element__heart_active {
   background-image: url(../../../../images/heart-active.svg);
 }
-.element__heart:hover {
-  cursor: pointer;
-  opacity: 0.5;
-  transition: opacity .2s linear;
-} 
