@@ -7,7 +7,7 @@ const popupImage = document.querySelector('.popup_type_image');
 const handleClosePopupEdit = document.querySelector('#popup__edit-close');
 const handleClosePopupAdd = document.querySelector('#popup__add-close');
 const handleClosePopupImage = document.querySelector('#popup__img-close');
-const addButton = document.querySelector('#popup__submit-add');
+const formList = document.querySelectorAll('.popup__form');
 
 // переменные для работы с формой
 const handleFormEdit = document.querySelector('#popup__edit-container');
@@ -34,28 +34,34 @@ const elementTemplate = cardTemplate.content.querySelector('.element');
 // переменная куда добовлять карточки
 const elementsContainer = document.querySelector('.elements');
 
-// массив из попапов
-const popupList = Array.from(document.querySelectorAll('.popup'));
+
+// валидация форм
+
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inputErrorClass: 'popup__input_type_error',
+  errorActiveClass: 'popup__input-error_active',
+}
+
+enableValidation(config);
 
 
 // функция закрытия попап по нажатию Esc
 function heandleKey(evt) {
-  popupList.forEach((popupElement) => {
-    document.querySelector('.popup_opend');
     if (evt.key === 'Escape') {
-      closePopup(popupElement);
+      const activePopup = document.querySelector('.popup_opend');
+      closePopup(activePopup);
   }
-})
 }
 
 // функция закрытия попап по клике на оверлей
 function heandleOverlay(evt) {
-  popupList.forEach((popupElement) => {
-    document.querySelector('.popup_opend');
     if(evt.target.classList.contains('popup_opend')) {
-      closePopup(popupElement);
+      const activePopup = document.querySelector('.popup_opend');
+      closePopup(activePopup);
     }
-  })
 }
 
 // функции открытия и закрытия popup 
@@ -119,11 +125,6 @@ initialCards.forEach((item) => {
   elementsContainer.append(newElement);
 });
 
-// функция отключения кнопки AddButton
-function setAddButtonDisabled(addButton) {
-  addButton.disabled = true;
-}
-
 // добавление карточки из popup
 function handleSubmitFormAdd(evt){
   evt.preventDefault();
@@ -136,7 +137,6 @@ function handleSubmitFormAdd(evt){
   closePopup(popupAdd);
 
   evt.target.reset();
-  setAddButtonDisabled(addButton);
 }
 
 // добавление изменений попапа редактировать
@@ -154,10 +154,14 @@ function handleSubmitFormEdit(evt){
 handleOpenPopupEdit.addEventListener('click', () => {
   nameInput.value = title.textContent; 
   jobInput.value = subtitle.textContent;
+  clearErrorElements(formList);
   openPopup(popupEdit);
 });
 
 handleOpenPopupAdd.addEventListener('click', () => {
+  inputPlace.value = '';
+  inputLink.value = '';
+  clearErrorElements(formList);
   openPopup(popupAdd);
 });
 
@@ -168,12 +172,3 @@ handleClosePopupImage.addEventListener('click',() =>  closePopup(popupImage));
 // вызов функции сохранить попап
 handleFormEdit.addEventListener('submit', handleSubmitFormEdit);
 handleFormAdd.addEventListener('submit', handleSubmitFormAdd);
-
-// валидация форм
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit',
-  inputErrorClass: 'popup__input_type_error',
-  errorActiveClass: 'popup__input-error_active',
-});

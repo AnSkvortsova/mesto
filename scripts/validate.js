@@ -1,3 +1,14 @@
+// функция отчистки формы
+function clearErrorElements(formList) {
+  const {inputSelector} = config;
+  formList.forEach(formElement => {
+    const inputList = Array.from(formElement.querySelectorAll(inputSelector));
+    inputList.forEach(inputElement => {
+      hideInputError(formElement, inputElement, config);
+    })
+  })
+}
+
 // функция для скрыть, показать ошибку 
 const hideInputError = (formElement, inputElement, config) => {
   const {inputErrorClass, errorActiveClass} = config;
