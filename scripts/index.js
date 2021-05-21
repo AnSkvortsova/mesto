@@ -33,20 +33,19 @@ const elementTemplate = cardTemplate.content.querySelector('.element');
 // переменная куда добовлять карточки
 const elementsContainer = document.querySelector('.elements');
 
-// переменные для сбрасывания формы
-const formList = document.querySelectorAll('.popup__form');
-//const inputList = document.querySelectorAll('.popup__input');
-//const buttonList = document.querySelectorAll('.popup__submit');
 
 
 // валидация форм
-enableValidation({
+
+const config = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__submit',
   inputErrorClass: 'popup__input_type_error',
   errorActiveClass: 'popup__input-error_active',
-});
+}
+
+enableValidation(config);
 
 
 // функция закрытия попап по нажатию Esc
@@ -155,14 +154,15 @@ function handleSubmitFormEdit(evt){
 handleOpenPopupEdit.addEventListener('click', () => {
   nameInput.value = title.textContent; 
   jobInput.value = subtitle.textContent;
-  clearErrorElements(formList, {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__submit',
-    inputErrorClass: 'popup__input_type_error',
-    errorActiveClass: 'popup__input-error_active',
-  });
-  //toggleButtonState(buttonList, inputList);
+
+  const currentForm = popupEdit.querySelector('.popup__form');
+  const currentInputList = Array.from(currentForm.querySelectorAll('.popup__input'));
+  const currentButton = currentForm.querySelector('.popup__submit');
+
+  clearErrorElements(currentForm, currentInputList, config);
+
+  toggleButtonState(currentButton, currentInputList);
+
   openPopup(popupEdit);
 });
 
@@ -174,13 +174,7 @@ handleOpenPopupAdd.addEventListener('click', () => {
   const currentInputList = Array.from(currentForm.querySelectorAll('.popup__input'));
   const currentButton = currentForm.querySelector('.popup__submit');
 
-  clearErrorElements(formList, {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__submit',
-    inputErrorClass: 'popup__input_type_error',
-    errorActiveClass: 'popup__input-error_active',
-  });
+  clearErrorElements(currentForm, currentInputList, config);
 
   toggleButtonState(currentButton, currentInputList);
 
