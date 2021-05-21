@@ -7,7 +7,6 @@ const popupImage = document.querySelector('.popup_type_image');
 const handleClosePopupEdit = document.querySelector('#popup__edit-close');
 const handleClosePopupAdd = document.querySelector('#popup__add-close');
 const handleClosePopupImage = document.querySelector('#popup__img-close');
-const formList = document.querySelectorAll('.popup__form');
 
 // переменные для работы с формой
 const handleFormEdit = document.querySelector('#popup__edit-container');
@@ -33,6 +32,7 @@ const elementTemplate = cardTemplate.content.querySelector('.element');
 
 // переменная куда добовлять карточки
 const elementsContainer = document.querySelector('.elements');
+
 
 
 // валидация форм
@@ -154,14 +154,30 @@ function handleSubmitFormEdit(evt){
 handleOpenPopupEdit.addEventListener('click', () => {
   nameInput.value = title.textContent; 
   jobInput.value = subtitle.textContent;
-  clearErrorElements(formList);
+
+  const currentForm = popupEdit.querySelector('.popup__form');
+  const currentInputList = Array.from(currentForm.querySelectorAll('.popup__input'));
+  const currentButton = currentForm.querySelector('.popup__submit');
+
+  clearErrorElements(currentForm, currentInputList, config);
+
+  toggleButtonState(currentButton, currentInputList);
+
   openPopup(popupEdit);
 });
 
 handleOpenPopupAdd.addEventListener('click', () => {
   inputPlace.value = '';
   inputLink.value = '';
-  clearErrorElements(formList);
+
+  const currentForm = popupAdd.querySelector('.popup__form');
+  const currentInputList = Array.from(currentForm.querySelectorAll('.popup__input'));
+  const currentButton = currentForm.querySelector('.popup__submit');
+
+  clearErrorElements(currentForm, currentInputList, config);
+
+  toggleButtonState(currentButton, currentInputList);
+
   openPopup(popupAdd);
 });
 

@@ -1,12 +1,8 @@
 // функция отчистки формы
-function clearErrorElements(formList) {
-  const {inputSelector} = config;
-  formList.forEach(formElement => {
-    const inputList = Array.from(formElement.querySelectorAll(inputSelector));
+function clearErrorElements(form, inputList, config) {
     inputList.forEach(inputElement => {
-      hideInputError(formElement, inputElement, config);
+      hideInputError(form, inputElement, config);
     })
-  })
 }
 
 // функция для скрыть, показать ошибку 
