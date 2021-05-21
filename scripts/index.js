@@ -35,7 +35,8 @@ const elementsContainer = document.querySelector('.elements');
 
 // переменные для сбрасывания формы
 const formList = document.querySelectorAll('.popup__form');
-const inputList = document.querySelectorAll('.popup__input');
+//const inputList = document.querySelectorAll('.popup__input');
+//const buttonList = document.querySelectorAll('.popup__submit');
 
 
 // валидация форм
@@ -154,14 +155,35 @@ function handleSubmitFormEdit(evt){
 handleOpenPopupEdit.addEventListener('click', () => {
   nameInput.value = title.textContent; 
   jobInput.value = subtitle.textContent;
-  clearErrorElements(formList, inputList);
+  clearErrorElements(formList, {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__submit',
+    inputErrorClass: 'popup__input_type_error',
+    errorActiveClass: 'popup__input-error_active',
+  });
+  //toggleButtonState(buttonList, inputList);
   openPopup(popupEdit);
 });
 
 handleOpenPopupAdd.addEventListener('click', () => {
   inputPlace.value = '';
   inputLink.value = '';
-  clearErrorElements(formList, inputList);
+
+  const currentForm = popupAdd.querySelector('.popup__form');
+  const currentInputList = Array.from(currentForm.querySelectorAll('.popup__input'));
+  const currentButton = currentForm.querySelector('.popup__submit');
+
+  clearErrorElements(formList, {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__submit',
+    inputErrorClass: 'popup__input_type_error',
+    errorActiveClass: 'popup__input-error_active',
+  });
+
+  toggleButtonState(currentButton, currentInputList);
+
   openPopup(popupAdd);
 });
 

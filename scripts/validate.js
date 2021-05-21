@@ -1,16 +1,10 @@
 // функция отчистки формы
-function clearErrorElements(formList, inputList) {
-  //const {inputSelector} = config;
+function clearErrorElements(formList, config) {
+  const {inputSelector} = config;
   formList.forEach(formElement => {
-    //const inputList = Array.from(formElement.querySelectorAll(inputSelector));
+    const inputList = Array.from(formElement.querySelectorAll(inputSelector));
     inputList.forEach(inputElement => {
-      hideInputError(formElement, inputElement, {
-        formSelector: '.popup__form',
-        inputSelector: '.popup__input',
-        submitButtonSelector: '.popup__submit',
-        inputErrorClass: 'popup__input_type_error',
-        errorActiveClass: 'popup__input-error_active',
-      });
+      hideInputError(formElement, inputElement, config);
     })
   })
 }
