@@ -7,7 +7,6 @@ const popupImage = document.querySelector('.popup_type_image');
 const handleClosePopupEdit = document.querySelector('#popup__edit-close');
 const handleClosePopupAdd = document.querySelector('#popup__add-close');
 const handleClosePopupImage = document.querySelector('#popup__img-close');
-const formList = document.querySelectorAll('.popup__form');
 
 // переменные для работы с формой
 const handleFormEdit = document.querySelector('#popup__edit-container');
@@ -34,18 +33,19 @@ const elementTemplate = cardTemplate.content.querySelector('.element');
 // переменная куда добовлять карточки
 const elementsContainer = document.querySelector('.elements');
 
+// переменные для сбрасывания формы
+const formList = document.querySelectorAll('.popup__form');
+const inputList = document.querySelectorAll('.popup__input');
+
 
 // валидация форм
-
-const config = {
+enableValidation({
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__submit',
   inputErrorClass: 'popup__input_type_error',
   errorActiveClass: 'popup__input-error_active',
-}
-
-enableValidation(config);
+});
 
 
 // функция закрытия попап по нажатию Esc
@@ -154,14 +154,14 @@ function handleSubmitFormEdit(evt){
 handleOpenPopupEdit.addEventListener('click', () => {
   nameInput.value = title.textContent; 
   jobInput.value = subtitle.textContent;
-  clearErrorElements(formList);
+  clearErrorElements(formList, inputList);
   openPopup(popupEdit);
 });
 
 handleOpenPopupAdd.addEventListener('click', () => {
   inputPlace.value = '';
   inputLink.value = '';
-  clearErrorElements(formList);
+  clearErrorElements(formList, inputList);
   openPopup(popupAdd);
 });
 
