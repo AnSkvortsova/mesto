@@ -1,29 +1,26 @@
-import Card from './card.js';
-import FormValidator from './validate.js';
+import initialCards from './initial-cards.js';
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
 
 // переменные открытия и закрытия popup
-const handleOpenPopupEdit = document.querySelector('.profile__edit-button');
-const handleOpenPopupAdd = document.querySelector('.profile__add-button');
+const openPopupEdit = document.querySelector('.profile__edit-button');
+const openPopupAdd = document.querySelector('.profile__add-button');
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_add');
 const popupImage = document.querySelector('.popup_type_image');
-const handleClosePopupEdit = document.querySelector('#popup__edit-close');
-const handleClosePopupAdd = document.querySelector('#popup__add-close');
-const handleClosePopupImage = document.querySelector('#popup__img-close');
+const closePopupEdit = document.querySelector('#popup__edit-close');
+const closePopupAdd = document.querySelector('#popup__add-close');
+const closePopupImage = document.querySelector('#popup__img-close');
 
 // переменные для работы с формой
-const handleFormEdit = document.querySelector('#popup__edit-container');
-const handleFormAdd = document.querySelector('#popup__add-container');
+const formEdit = document.querySelector('form[name="edit"]');
+const formAdd = document.querySelector('form[name="add-card"]');
 
 // переменные для работы с input попапа редактировать
 const title = document.querySelector('.profile__title');
 const subtitle = document.querySelector('.profile__subtitle');
 const nameInput = document.querySelector('#input-name');
 const jobInput = document.querySelector('#input-job');
-
-// переменные для работы с input попапа добавить
-const inputPlace = document.querySelector('#input-place');
-const inputLink = document.querySelector('#input-link');
 
 // переменная куда добовлять карточки
 const elementsContainer = document.querySelector('.elements');
@@ -39,10 +36,10 @@ const config = {
   errorActiveClass: 'popup__input-error_active',
 }
 
-const editFormValidator = new FormValidator(config, document.querySelector('form[name="edit"]'));
+const editFormValidator = new FormValidator(config, formEdit);
 editFormValidator.enableValidation();
 
-const addCardFormValidator = new FormValidator(config, document.querySelector('form[name="add-card"]'));
+const addCardFormValidator = new FormValidator(config, formAdd);
 addCardFormValidator.enableValidation();
 
 
@@ -105,40 +102,29 @@ function handleSubmitFormEdit(evt){
 
 // вызов функции открытия и закрытия popup 
 
-handleOpenPopupEdit.addEventListener('click', () => {
+openPopupEdit.addEventListener('click', () => {
   nameInput.value = title.textContent; 
   jobInput.value = subtitle.textContent;
 
-  // const currentForm = popupEdit.querySelector('.popup__form');
-  // const currentInputList = Array.from(currentForm.querySelectorAll('.popup__input'));
-  // const currentButton = currentForm.querySelector('.popup__submit');
-
   editFormValidator.clearErrorElements();
-
   editFormValidator.toggleButtonState();
 
   openPopup(popupEdit);
 });
 
-handleOpenPopupAdd.addEventListener('click', () => {
-  inputPlace.value = '';
-  inputLink.value = '';
-
-  // const currentForm = popupAdd.querySelector('.popup__form');
-  // const currentInputList = Array.from(currentForm.querySelectorAll('.popup__input'));
-  // const currentButton = currentForm.querySelector('.popup__submit');
+openPopupAdd.addEventListener('click', () => {
+  formAdd.reset();
 
   addCardFormValidator.clearErrorElements();
-
   addCardFormValidator.toggleButtonState();
 
   openPopup(popupAdd);
 });
 
-handleClosePopupEdit.addEventListener('click', () => closePopup(popupEdit));
-handleClosePopupAdd.addEventListener('click', () => closePopup(popupAdd));
-handleClosePopupImage.addEventListener('click',() =>  closePopup(popupImage));
+closePopupEdit.addEventListener('click', () => closePopup(popupEdit));
+closePopupAdd.addEventListener('click', () => closePopup(popupAdd));
+closePopupImage.addEventListener('click',() =>  closePopup(popupImage));
 
 // вызов функции сохранить попап
-handleFormEdit.addEventListener('submit', handleSubmitFormEdit);
-handleFormAdd.addEventListener('submit', handleSubmitFormAdd);
+formEdit.addEventListener('submit', handleSubmitFormEdit);
+formAdd.addEventListener('submit', handleSubmitFormAdd);
