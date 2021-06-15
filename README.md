@@ -9,4 +9,4 @@
 
 **Сcылка на сайт**
 
-* [Mesto](https://anskvortsova.github.io/mesto/index.html)
+* [Mesto](https://anskvortsova.github.io/mesto/src/index.html)
