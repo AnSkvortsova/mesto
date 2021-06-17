@@ -12,10 +12,14 @@ export class Popup {
 
   openPopup() {
     this.popupElement.classList.add('popup_opend');
+    document.addEventListener('keydown', this._heandleKey);
+    document.addEventListener('click', this._heandleOverlay);
   }
 
   closePopup() {
     this.popupElement.classList.remove('popup_opend');
+    document.removeEventListener('keydown', this._heandleKey);
+    document.removeEventListener('click', this._heandleOverlay);
   }
 
   _heandleKey(evt) {
@@ -34,7 +38,5 @@ export class Popup {
     this.popupElement.querySelector('.popup__close').addEventListener('click', () => {
       this.closePopup();
     });
-    document.addEventListener('keydown', this._heandleKey);
-    document.addEventListener('click', this._heandleOverlay);
   }
 }
