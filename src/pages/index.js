@@ -1,11 +1,11 @@
-import './pages/pages.css';
-import { initialCards } from './scripts/initial-cards.js';
-import { Card } from './scripts/Card.js';
-import { Section } from './scripts/Section.js';
-import { FormValidator } from './scripts/FormValidator.js';
-import { PopupWithImage } from './scripts/PopupWithImage.js';
-import { PopupWithForm } from './scripts/PopupWithForm.js';
-import { UserInfo } from './scripts/UserInfo.js';
+import './index.css';
+import { initialCards } from '../scripts/initial-cards.js';
+import { Card } from '../scripts/components/Card.js';
+import { Section } from '../scripts/components/Section.js';
+import { FormValidator } from '../scripts/components/FormValidator.js';
+import { PopupWithImage } from '../scripts/components/PopupWithImage.js';
+import { PopupWithForm } from '../scripts/components/PopupWithForm.js';
+import { UserInfo } from '../scripts/components/UserInfo.js';
 
 // переменные открытия popup
 const openPopupEditProfile = document.querySelector('.profile__edit-button');
@@ -42,28 +42,35 @@ const popupEditProfile = new PopupWithForm({
     popupEditProfile.closePopup();
   }
 });
+popupEditProfile.setEventListeners();
 
 const popupAddCard = new PopupWithForm({
   popupElement: '.popup_type_add',
   handleSubmitForm: (cardData) => {
-    cardsSection.addItem(cardData);
+    cardsSection.addItem(createCard(cardData));
     popupAddCard.closePopup();
     }
 });
+popupAddCard.setEventListeners();
 
 const popupImageView = new PopupWithImage('.popup_type_image');
+popupImageView.setEventListeners();
 
+// карточки
+const createCard = (cardData) => {
+  const card = new Card(cardData, '#card-template', popupImageView.openPopup.bind(popupImageView));
+  return card.generateCard();
+}
 
-// отрисовка карточек
 const cardsSection = new Section({
-  items: initialCards,
   renderer: (cardData) => {
-    const card = new Card(cardData, '#card-template', popupImageView.handleCardClick.bind(popupImageView));
-    return card.generateCard();
+    cardsSection.addItem(createCard(cardData));
   },
-}, '.elements')
+}, '.elements'); 
+cardsSection.renderItems(initialCards);
 
-// вызов функции открытия и закрытия popup 
+
+// вызов функции открытия popup 
 
 openPopupEditProfile.addEventListener('click', () => {
   
@@ -82,7 +89,3 @@ openPopupAddCard.addEventListener('click', () => {
 
   popupAddCard.openPopup();
 });
-
-popupEditProfile.closePopup();
-popupAddCard.closePopup();
-popupImageView.closePopup();

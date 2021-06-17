@@ -6,7 +6,6 @@ export class PopupWithForm extends Popup {
     this.handleSubmitForm = handleSubmitForm;
 
     this._makeElements();
-    this._setEventListeners();
   };
 
   _makeElements() {
@@ -29,7 +28,7 @@ export class PopupWithForm extends Popup {
     });
   };
 
-  _setEventListeners() {
+  setEventListeners() {
     super.setEventListeners();
     this._formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
