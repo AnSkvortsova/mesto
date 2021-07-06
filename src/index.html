@@ -14,7 +14,10 @@
       <main class="main">
         <section class="profile page__section">
           <div class="profile__box">
-            <img class="profile__image" src="<%=require('./images/Avatar.jpg')%>" alt="Аватар">
+            <div class="profile__avatar">
+              <img class="profile__image" src="<%=require('./images/Avatar.jpg')%>" alt="Аватар">
+              <img class="profile__pencil" src="<%=require('./images/pencil.svg')%>" alt="Карандаш">
+            </div>
           <div class="profile__info">
             <div class="profile__row">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -42,7 +45,10 @@
         <button class="element__trash" type="button" aria-label="удалить"></button>
         <div class="element__bottom">
           <h2 class="element__text"></h2>
-          <button class="element__heart" type="button" aria-label="отметить как нравиться"></button>
+          <div class="element__likes">
+            <button class="element__heart" type="button" aria-label="отметить как нравиться"></button>
+            <p class="element__number">0</p>
+          </div>
         </div>
       </article>
     </template>
@@ -85,6 +91,27 @@
         </figure>
       </div>
     </div>
+
+    <div class="popup popup_type_delete">
+      <div class="popup__container">
+        <button class="popup__close" id="popup__delete-close" type="button" aria-label="закрыть"></button>
+        <h2 class="popup__title popup__title_delete">Вы уверены?</h2>
+        <form class="popup__form" name="delete">
+          <button class="popup__submit popup__submit_delete" id="popup__submit-delete" type="submit" aria-label="да">Да</button>
+        </form>
+      </div>
+    </div>
     
+    <div class="popup popup_type_avatar">
+      <div class="popup__container">
+        <form class="popup__form" name="avatar" novalidate>
+          <button class="popup__close" id="popup__avatar-close" type="button" aria-label="закрыть"></button>
+          <h2 class="popup__title">Обновить аватар</h2>
+          <input class="popup__input" id="input-avatar" name="avatar" type="url" value="" placeholder="Ссылка" required>
+          <span class="popup__input-error" id="input-avatar-error"></span>
+          <button class="popup__submit" id="popup__submit-avatar" type="submit" aria-label="сохранить">Сохранить</button>
+        </form>
+      </div>
+    </div>
   </body>
 </html>

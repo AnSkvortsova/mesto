@@ -11,6 +11,7 @@ export class PopupWithForm extends Popup {
   _makeElements() {
     this._formElement = this.popupElement.querySelector('.popup__form');
     this._inputs = Array.from(this._formElement.querySelectorAll('.popup__input'));
+    this._button = this.popupElement.querySelector('.popup__submit');
   };
 
   _getInputValues() {

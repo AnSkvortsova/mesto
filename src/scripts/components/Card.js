@@ -1,8 +1,11 @@
 export class Card {
-  constructor(data, templateSelector, handleCardClick) {
+  constructor({data, myUserId, templateSelector, handleCardClick, handleLikeCard, handleRemoveCard}) {
     this._data = data;
+    this._myUserId = myUserId;
     this._templateSelector = templateSelector;
     this.handleCardClick = handleCardClick;
+    this.handleLikeCard = handleLikeCard;
+    this.handleRemoveCard = handleRemoveCard;
 
     this._makeElements();
     this._setEventListeners();
@@ -14,29 +17,49 @@ export class Card {
 
     this._deleteButton = this._cardElement.querySelector('.element__trash');
     this._likeButton = this._cardElement.querySelector('.element__heart');
+    this._likeCounter = this._cardElement.querySelector('.element__number');
     this._imageCard = this._cardElement.querySelector('.element__image');
+
+    this._likes = this._data.likes;
   }
 
   _setEventListeners() {
-    this._deleteButton.addEventListener('click', () => this._handleRemoveCard());
-    this._likeButton.addEventListener('click', () => this._handleLikeCard());
+    this._deleteButton.addEventListener('click', () => this.handleRemoveCard());
+    this._likeButton.addEventListener('click', () => this.handleLikeCard());
     this._imageCard.addEventListener('click', () => this.handleCardClick(this._data));
   }
 
-  _handleRemoveCard() {
+  removeCard() {
     this._cardElement.remove();
     this._cardElement = null;
   }
 
-  _handleLikeCard() {
+  isLike() {
+    if (this._likeButton.classList.contains('element__heart_active')) {
+      return true;
+    }
+  }
+
+  countLikes() {
+    this._likeCounter.textContent = this._likes.length;
+  }
+
+  setLikes(data) {
     this._likeButton.classList.toggle('element__heart_active');
+    this._likes = data.likes;
+    this.countLikes();
   }
 
   generateCard() {
-
     this._imageCard.src = this._data.link;
     this._imageCard.alt = this._data.name;
     this._cardElement.querySelector('.element__text').textContent = this._data.name;
+
+    this.countLikes();
+
+    if (this._data.owner._id !== this._myUserId) {
+      this._deleteButton.remove();
+    }
 
     return this._cardElement;
   }
