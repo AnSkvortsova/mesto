@@ -5,7 +5,8 @@ import { FormValidator } from '../scripts/components/FormValidator.js';
 import { PopupWithImage } from '../scripts/components/PopupWithImage.js';
 import { PopupWithForm } from '../scripts/components/PopupWithForm.js';
 import { UserInfo } from '../scripts/components/UserInfo.js';
-import { Api } from '../scripts/Api.js';
+import { Api } from '../scripts/components/Api.js';
+import {renderLoading} from '../scripts/utils/utils.js';
 
 const options = {
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-25',
@@ -63,7 +64,7 @@ const createCard = (cardData) => {
     data: cardData, 
     myUserId: myUserId, 
     templateSelector: '#card-template', 
-    handleCardClick: popupImageView.openPopup.bind(popupImageView),
+    handleCardClick: popupImageView.open.bind(popupImageView),
     handleLikeCard: () => {
       api.setLikeCard(card._data._id, card.isLike())
       .then((result) => {
@@ -74,7 +75,7 @@ const createCard = (cardData) => {
       })
     },
     handleRemoveCard: () => {
-      popupRemoveCard.openPopup();
+      popupRemoveCard.open();
       cardRemoved = card;
     },
   });
@@ -101,17 +102,6 @@ Promise.all([
   console.log(err);
 });
 
-// индикатор загрузки
-function renderLoading (popupSelector, isLoading) {
-  const popupElement = document.querySelector(popupSelector);
-  const buttonSubmit = popupElement.querySelector('.popup__submit');
-  if(isLoading) {
-    buttonSubmit.textContent = 'Сохранение...';
-  } else {
-    buttonSubmit.textContent = 'Сохранить';
-  }
-}
-
 // попапы
 const popupEditProfile = new PopupWithForm({
   popupElement: '.popup_type_edit',
@@ -121,7 +111,7 @@ const popupEditProfile = new PopupWithForm({
     api.pushUserInfo(profileData)
     .then((result) => {
       userInfo.setUserInfo(result);
-      userInfo.setAvatar(result);
+      popupEditProfile.close();
     })
     .catch((err) => {
       console.log(err);
@@ -129,8 +119,6 @@ const popupEditProfile = new PopupWithForm({
     .finally(() => {
       renderLoading('.popup_type_edit', false)
     });
-    
-    popupEditProfile.closePopup();
   }
 });
 popupEditProfile.setEventListeners();
@@ -142,7 +130,8 @@ const popupAddCard = new PopupWithForm({
 
     api.pushNewCard(cardData)
     .then((result) => {
-      cardsSection.addItem(createCard(result));
+      cardsSection.addNewItem(createCard(result));
+      popupAddCard.close();
     })
     .catch((err) => {
       console.log(err);
@@ -150,8 +139,6 @@ const popupAddCard = new PopupWithForm({
     .finally(() => {
       renderLoading('.popup_type_add', false)
     });
-  
-    popupAddCard.closePopup();
     }
 });
 popupAddCard.setEventListeners();
@@ -165,12 +152,11 @@ const popupRemoveCard = new PopupWithForm({
     api.removeCard(cardRemoved._data._id)
     .then(() => {
       cardRemoved.removeCard();
+      popupRemoveCard.close();
     })
     .catch((err) => {
       console.log(err);
     });
-
-    popupRemoveCard.closePopup();
   }
 });
 popupRemoveCard.setEventListeners();
@@ -181,13 +167,12 @@ const popupAvatar = new PopupWithForm({
     renderLoading ('.popup_type_avatar', true);
     api.updateAvatar(avatarData)
     .then((result) => {
-      userInfo.setAvatar(result);
+      userInfo.setUserInfo(result);
+      popupAvatar.close();
     })
     .finally(() => {
       renderLoading('.popup_type_avatar', false)
     });
-
-    popupAvatar.closePopup();
   }
 })
 popupAvatar.setEventListeners();
@@ -201,7 +186,7 @@ openPopupEditProfile.addEventListener('click', () => {
   editFormValidator.clearErrorElements();
   editFormValidator.toggleButtonState();
 
-  popupEditProfile.openPopup();
+  popupEditProfile.open();
 });
 
 openPopupAddCard.addEventListener('click', () => {
@@ -209,7 +194,7 @@ openPopupAddCard.addEventListener('click', () => {
   addCardFormValidator.clearErrorElements();
   addCardFormValidator.toggleButtonState();
 
-  popupAddCard.openPopup();
+  popupAddCard.open();
 });
 
 openPopupAvatar.addEventListener('click', () => {
@@ -217,5 +202,5 @@ openPopupAvatar.addEventListener('click', () => {
   avatarFormValidator.clearErrorElements();
   avatarFormValidator.toggleButtonState();
 
-  popupAvatar.openPopup();
+  popupAvatar.open();
 })

@@ -11,6 +11,10 @@ export class Section {
   };
   
   addItem(element) {
-    this._elementsContainer.prepend(element);
+    this._elementsContainer.append(element);
   };
+
+  addNewItem(element) {
+    this._elementsContainer.prepend(element);
+  }
 }
