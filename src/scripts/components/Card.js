@@ -35,17 +35,19 @@ export class Card {
   }
 
   isLike() {
-    if (this._likeButton.classList.contains('element__heart_active')) {
-      return true;
-    }
+    return this._likes.find((item) => item._id === this._myUserId);
   }
 
   countLikes() {
     this._likeCounter.textContent = this._likes.length;
+    if(this.isLike()) {
+      this._likeButton.classList.add('element__heart_active');
+    } else {
+      this._likeButton.classList.remove('element__heart_active');
+    }
   }
 
   setLikes(data) {
-    this._likeButton.classList.toggle('element__heart_active');
     this._likes = data.likes;
     this.countLikes();
   }
