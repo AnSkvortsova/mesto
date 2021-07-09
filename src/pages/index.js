@@ -6,7 +6,7 @@ import { PopupWithImage } from '../scripts/components/PopupWithImage.js';
 import { PopupWithForm } from '../scripts/components/PopupWithForm.js';
 import { UserInfo } from '../scripts/components/UserInfo.js';
 import { Api } from '../scripts/components/Api.js';
-import {renderLoading} from '../scripts/utils/utils.js';
+import { renderLoading } from '../scripts/utils/utils.js';
 import { PopupWithConfirm } from '../scripts/components/PopupWithConfirm.js';
 
 const options = {
@@ -30,7 +30,6 @@ const formAvatar = document.querySelector('form[name="avatar"]');
 
 
 let myUserId = null;
-//let cardRemoved = {};
 
 
 // валидация форм
@@ -65,7 +64,7 @@ const createCard = (cardData) => {
     data: cardData, 
     myUserId: myUserId, 
     templateSelector: '#card-template', 
-    handleCardClick: popupImageView.open.bind(popupImageView),
+    handleCardClick: () => {popupImageView.open(cardData)},
     handleLikeCard: () => {
       api.setLikeCard(card._data._id, card.isLike())
       .then((result) => {
@@ -76,6 +75,7 @@ const createCard = (cardData) => {
       })
     },
     handleRemoveCard: () => {
+      popupRemoveCard.getData(card);
       popupRemoveCard.open();
     },
   });
@@ -148,10 +148,10 @@ popupImageView.setEventListeners();
 
 const popupRemoveCard = new PopupWithConfirm({
   popupElement: '.popup_type_delete',
-  handleSubmitForm: () => {
-    api.removeCard(card._data._id)
+  handleSubmitForm: (cardData) => {
+    api.removeCard(cardData._data._id)
     .then(() => {
-      card.removeCard();
+      cardData.removeCard();
       popupRemoveCard.close();
     })
     .catch((err) => {
