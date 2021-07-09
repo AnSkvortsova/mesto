@@ -7,6 +7,7 @@ import { PopupWithForm } from '../scripts/components/PopupWithForm.js';
 import { UserInfo } from '../scripts/components/UserInfo.js';
 import { Api } from '../scripts/components/Api.js';
 import {renderLoading} from '../scripts/utils/utils.js';
+import { PopupWithConfirm } from '../scripts/components/PopupWithConfirm.js';
 
 const options = {
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-25',
@@ -29,7 +30,7 @@ const formAvatar = document.querySelector('form[name="avatar"]');
 
 
 let myUserId = null;
-let cardRemoved = {};
+//let cardRemoved = {};
 
 
 // валидация форм
@@ -76,7 +77,6 @@ const createCard = (cardData) => {
     },
     handleRemoveCard: () => {
       popupRemoveCard.open();
-      cardRemoved = card;
     },
   });
   return card.generateCard();
@@ -146,12 +146,12 @@ popupAddCard.setEventListeners();
 const popupImageView = new PopupWithImage('.popup_type_image');
 popupImageView.setEventListeners();
 
-const popupRemoveCard = new PopupWithForm({
+const popupRemoveCard = new PopupWithConfirm({
   popupElement: '.popup_type_delete',
   handleSubmitForm: () => {
-    api.removeCard(cardRemoved._data._id)
+    api.removeCard(card._data._id)
     .then(() => {
-      cardRemoved.removeCard();
+      card.removeCard();
       popupRemoveCard.close();
     })
     .catch((err) => {
