@@ -9,7 +9,6 @@
 - JS
 - HTML
 - CSS
-- API
 - Webpack
 - Nested BEM
 
